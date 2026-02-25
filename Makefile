@@ -2,7 +2,7 @@ IMAGE_NAME := docker-python-env
 
 .DEFAULT_GOAL := help
 
-.PHONY: help lint format typecheck fix check build run
+.PHONY: help lint format typecheck fix check build run tf-init tf-plan tf-apply tf-destroy
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-14s\033[0m %s\n", $$1, $$2}'
@@ -27,3 +27,15 @@ build: ## Build the Docker image
 
 run: ## Run the Docker container
 	docker run --rm $(IMAGE_NAME)
+
+tf-init: ## Initialise Terraform working directory
+	terraform -chdir=terraform init
+
+tf-plan: ## Show Terraform execution plan
+	terraform -chdir=terraform plan
+
+tf-apply: ## Apply Terraform changes
+	terraform -chdir=terraform apply
+
+tf-destroy: ## Destroy Terraform-managed infrastructure
+	terraform -chdir=terraform destroy
