@@ -60,3 +60,7 @@ State is stored locally by default. Before using this in a team or CI pipeline, 
 ## Getting started
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for full setup instructions and development workflow.
+
+## Licence
+
+MIT — see [LICENSE](LICENSE).

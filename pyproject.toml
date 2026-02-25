@@ -1,8 +1,9 @@
 [project]
 name = "docker-python-env"
 version = "0.1.0"
-description = "Add your description here"
+description = "A minimal, well-governed Python environment deployable as a Docker container with Terraform-managed AWS infrastructure."
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.14"
 dependencies = []
 
