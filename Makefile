@@ -1,8 +1,11 @@
 IMAGE_NAME := docker-python-env
 
+export PYTHONDONTWRITEBYTECODE := 1
+export PYTHONUNBUFFERED := 1
+
 .DEFAULT_GOAL := help
 
-.PHONY: help lint format typecheck fix check build run tf-init tf-plan tf-apply tf-destroy
+.PHONY: help lint format typecheck test fix check build run tf-init tf-plan tf-apply tf-destroy
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-14s\033[0m %s\n", $$1, $$2}'
@@ -20,7 +23,10 @@ fix: ## Auto-fix ruff violations and reformat with black
 	uv run ruff check --fix .
 	uv run black .
 
-check: lint format typecheck ## Run all checks (lint, format, typecheck)
+test: ## Run tests with coverage
+	uv run pytest
+
+check: lint format typecheck test ## Run all checks (lint, format, typecheck, test)
 
 build: ## Build the Docker image
 	docker build -t $(IMAGE_NAME) .
