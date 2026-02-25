@@ -18,6 +18,42 @@ uv sync --group dev
 
 All common tasks are available via `make`. Run `make help` to see the full list.
 
+### Dependency management
+
+Runtime and dev dependencies are declared in `pyproject.toml` and pinned in `uv.lock`. Always commit both files together.
+
+Add a runtime dependency:
+
+```bash
+uv add <package>
+```
+
+Add a dev-only dependency (tools, linters, test libraries):
+
+```bash
+uv add --group dev <package>
+```
+
+Remove a dependency:
+
+```bash
+uv remove <package>
+```
+
+Upgrade all dependencies to the latest allowed versions:
+
+```bash
+uv lock --upgrade
+```
+
+Upgrade a single package:
+
+```bash
+uv lock --upgrade-package <package>
+```
+
+After any lock file change, run `uv sync --group dev` to update your local environment, then run `make check` to confirm nothing is broken.
+
 ### Code quality
 
 ```bash
