@@ -68,6 +68,35 @@ make test        # pytest with branch coverage
 
 Tests live in `tests/`. Coverage is reported to the terminal and written to `coverage.xml`. All new code should be covered.
 
+## Commit messages
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/). Every commit message must follow the format:
+
+```
+<type>(<scope>): <description>
+```
+
+The `scope` is optional. Use the types below:
+
+| Type | When to use |
+|---|---|
+| `feat` | A new feature or behaviour |
+| `fix` | A bug fix |
+| `docs` | Documentation only |
+| `chore` | Maintenance — dependencies, config, tooling |
+| `build` | Build system or CI changes |
+| `test` | Adding or updating tests |
+| `refactor` | Code change that neither fixes a bug nor adds a feature |
+| `perf` | Performance improvement |
+
+Keep the description short (under 72 characters), in the imperative mood, and in lower case. For example:
+
+```
+feat(auth): add JWT validation middleware
+fix: handle empty response from upstream API
+docs: document src layout rationale
+```
+
 ## Docker
 
 ```bash
