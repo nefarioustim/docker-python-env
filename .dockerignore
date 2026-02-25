@@ -1,0 +1,25 @@
+# Version control
+.git/
+.gitignore
+
+# Python
+__pycache__/
+*.py[oc]
+.venv/
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+
+# Terraform
+terraform/
+*.tf
+*.tfstate*
+*.tfvars
+
+# Development files
+Makefile
+CONTRIBUTING.md
