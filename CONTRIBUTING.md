@@ -39,6 +39,27 @@ make fix         # ruff --fix + black reformat
 - **Linting**: [ruff](https://docs.astral.sh/ruff/) with a broad community ruleset — pycodestyle, pyflakes, isort, pep8-naming, pyupgrade, bugbear, comprehensions, simplify, type-checking, annotations, pathlib, perflint
 - **Types**: [mypy](https://mypy.readthedocs.io) in strict mode — all public functions and methods must be fully annotated
 
+## Code governance
+
+This project enforces a strict quality baseline. All checks must pass before code is merged.
+
+### Type annotations
+
+Every function and method — including tests — must carry complete type annotations. This is enforced by two layers:
+
+- **ruff** (`ANN` rules) rejects missing annotations at lint time.
+- **mypy** in strict mode performs full static type checking, including inferred return types, `Any` usage, and untyped third-party imports.
+
+There are no per-file or per-directory exemptions. Annotate everything.
+
+### Linting and formatting
+
+Code must be formatted with **black** and pass all **ruff** rules without suppression. If a rule produces a false positive, discuss disabling it project-wide in `pyproject.toml` rather than adding inline `# noqa` comments.
+
+### Test coverage
+
+All new code must be covered by tests. Branch coverage is measured — ensure conditional paths are exercised, not just the happy path. `make check` will fail if coverage drops.
+
 ### Testing
 
 ```bash
